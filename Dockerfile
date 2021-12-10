@@ -116,7 +116,9 @@ RUN mkdir -p /home/vcap /opt/datadog-agent/run &&\
 # 4. Ensure that running Java 8 as root will still be able to load offline licenses
 RUN chmod +rx /opt/mendix/build/startup &&\
     chown -R ${USER_UID}:0 /opt/mendix &&\
-    chmod -R g=u /opt/mendix &&\
+    chown -R ${USER_UID}:0 /etc/nginx &&\
+    chmod -R 777 /opt/mendix &&\
+    chmod -R 777 /etc/nginx &&\
     ln -s /opt/mendix/.java /root
 
 USER ${USER_UID}
